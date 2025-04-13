@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Profesional - Scrollable</title>
+  <style>
+    /* Font & Global */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #eef2f3;
+      text-align: center;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      height: 200vh;
+      position: relative;
+    }
+
+    /* Dashboard & Navigation */
+    .dashboard {
+      background-color: #004d00;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      background: #003300;
+      padding: 15px;
+      position: sticky;
+      top: 40px;
+      z-index: 100;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      margin: 0 10px;
+      border-radius: 5px;
+      transition: background 0.3s;
+      font-weight: bold;
+    }
+
+    .nav a:hover {
+      background: #006400;
+    }
+
+    /* Container & Content Blocks */
+    .container, .portfolio {
+      width: 80%;
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .portfolio {
+      display: flex;
+      align-items: center;
+      text-align: left;
+    }
+
+    .portfolio img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 30px;
+      border: 4px solid #004d00;
+    }
+
+    .portfolio-info {
+      flex: 1;
+    }
+
+    .social-media a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #004d00;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .social-media a:hover {
+      color: #006400;
+    }
+
+    .social-media img {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* Floating Circle Animation */
+    .abstract, .abstract2 {
+      position: absolute;
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .abstract {
+      top: 10%;
+      left: 10%;
+      width: 100px;
+      height: 100px;
+      background: rgba(0, 77, 0, 0.3);
+    }
+
+    .abstract2 {
+      top: 50%;
+      left: 70%;
+      width: 150px;
+      height: 150px;
+      background: rgba(0, 77, 77, 0.3);
+      animation: float2 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes float2 {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(30px); }
+    }
+
+    /* Button */
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #004d00;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #002200;
+    }
+
+    /* Marquee */
+    .marquee {
+      background: #004d00;
+      color: white;
+      padding: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .marquee span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 10s linear infinite;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* Content Fade Transition */
+    .content {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-in-out;
+      display: none;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      margin-top: 30px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Text */
+    ul.simple-list {
+      text-align: left;
+      padding-left: 20px;
+      list-style-type: square;
+      line-height: 1.8;
+    }
+
+    .contact-info {
+      text-align: left;
+      padding-left: 20px;
+      line-height: 1.8;
+    }
+
+    .contact-info a {
+      color: #004d00;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      color: #004d00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard">Dashboard</div>
+
+  <div class="nav">
+    <a href="javascript:void(0)" onclick="showContent('home')">Home</a>
+    <a href="javascript:void(0)" onclick="showContent('about')">About</a>
+    <a href="javascript:void(0)" onclick="showContent('projects')">Projects</a>
+    <a href="javascript:void(0)" onclick="showContent('contact')">Contact</a>
+  </div>
+
+  <div id="home" class="content active">
+    <div class="home-content">
+      <h1>Welcome to My Professional Website</h1>
+      <p>Discover amazing projects, get in touch, and learn more about me. Feel free to explore!</p>
+      <a href="javascript:void(0)" class="btn" onclick="showContent('about')">Jelajahi</a>
+    </div>
+  </div>
+
+  <div id="about" class="content">
+    <h2>About</h2>
+    <p>Learn more about me in the About section.</p>
+    <div class="profile-details">
+      <h1>Halo! Nama saya Raditya Yhori Pratama</h1>
+      <p>Biasanya dipanggil Radit. Tahun ini saya berusia 19 tahun, lahir di Pekanbaru, dan saya adalah anak pertama dari tiga bersaudara.</p>
+      <p>Saat ini, saya seorang mahasiswa di Universitas Riau, Jurusan Teknik Elektro, Program Studi Teknik Informatika Angkatan 2024.</p>
+      <div class="portfolio">
+        <img src="profile.jpg" alt="Foto Profil">
+        <div class="portfolio-info">
+          <h2>Portofolio</h2>
+          <p><strong>Nama:</strong> Raditya Yhori Pratama</p>
+          <p><strong>Email:</strong> radityayhoripratama@gmail.com</p>
+          <div class="social-media">
+            <a href="https://www.instagram.com/rdtyayhori_?igsh=MXBrdW5pbHkzbjM5ZQ%3D%3D&utm_source=qr">
+              <img src="instagramlogo.png" alt="Instagram">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="projects" class="content">
+    <h2>Projects</h2>
+    <ul class="simple-list">
+      <li><strong>Website Portfolio</strong> - Website ini yang sedang kamu lihat sekarang!</li>
+      <li><strong>Publish Website</strong> - Publish website ini agar bisa dijangkau banyak orang.</li>
+      <li><strong>Tugas UTS</strong> - Membuat makalah lalu di-publish di website saya.</li>
+    </ul>
+  </div>
+
+  <div id="contact" class="content">
+    <h2>Contact</h2>
+    <div class="contact-info">
+      <p>📧 Email: <a href="mailto:radityayhoripratama@gmail.com">radityayhoripratama@gmail.com</a></p>
+      <p>📱 Instagram: <a href="https://www.instagram.com/rdtyayhori_" target="_blank">@rdtyayhori_</a></p>
+      <p>📍 Lokasi: Pekanbaru, Indonesia</p>
+    </div>
+  </div>
+
+  <div class="marquee">
+    <span>The coolest thing in here-!</span>
+  </div>
+
+  <script>
+    function showContent(contentId) {
+      const contents = document.querySelectorAll('.content');
+      contents.forEach(content => {
+        content.classList.remove('active');
+        content.style.display = 'none';
+      });
+
+      const selected = document.getElementById(contentId);
+      selected.style.display = 'block';
+      setTimeout(() => selected.classList.add('active'), 10);
+    }
+  </script>
+</body>
+</html>
